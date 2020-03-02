@@ -1,0 +1,53 @@
+https://www.hackerrank.com/challenges/sherlock-and-divisors/problem
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp2
+{
+    class Program
+    {
+
+
+        static int divisors(int n)
+        {
+            /*
+             * Write your code here.
+             */
+            int cont = 0;
+            for (int i = 1; i * i <= n; i++)
+            {
+                if (n % i == 0)
+                {
+                    //div.Add(i);
+                    if (i % 2 == 0)
+                    {
+                        cont++;
+                    }
+                    if (n / i != i)
+                    {
+                        //div.Add(n / i);
+                        if ((n / i) % 2 == 0)
+                        {
+                            cont++;
+                        }
+                    }
+                }
+
+            }
+
+            return cont;
+
+
+        }
+
+        static void Main(string[] args)
+        {
+
+            Console.ReadLine();
+        }
+    }
+}

@@ -1,0 +1,124 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+class Solution {
+
+    static void Main(String[] args) {
+        int q = Convert.ToInt32(Console.ReadLine());
+        for(int a0 = 0; a0 < q; a0++){
+            int n = Convert.ToInt32(Console.ReadLine());
+            string[] sizes_temp = Console.ReadLine().Split(' ');
+            int[] sizes = Array.ConvertAll(sizes_temp,Int32.Parse);
+            int v = Convert.ToInt32(Console.ReadLine());
+            for(int a1 = 0; a1 < v; a1++){
+                string[] tokens_smallest = Console.ReadLine().Split(' ');
+                int smallest = Convert.ToInt32(tokens_smallest[0]);
+                int largest = Convert.ToInt32(tokens_smallest[1]);
+                // your code goes here
+            }
+        }
+    }
+}
+
+
+----------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        //static void Main(string[] args)
+        //{
+
+        //    int[] sizes = { 2, 3, 6, 9, 13 };
+
+        //    int[][] vendors =
+        //    {
+        //        new int[]{ 3 ,7 },
+        //        new int[]{ 4, 8},
+        //        new int[]{14, 16},
+        //        new int[]{ 10, 13}
+        //    };
+
+        //    HashSet<int> hs = new HashSet<int>();
+        //    for (int i = 0; i < sizes.Length; i++)
+        //    {
+        //        for (int j = 0; j < vendors.Length; j++)
+        //        {
+        //            if (sizes[i] >= vendors[j][0] && sizes[i] <= vendors[j][1])
+        //            {
+        //                hs.Add(sizes[i]);
+        //                break;
+        //            }
+        //        }
+        //    }
+
+        //    Console.WriteLine(hs.Count);
+
+        //    Console.ReadLine();
+        //}
+
+      
+
+
+        static void Main()
+        {
+
+            int q = Convert.ToInt32(Console.ReadLine());
+            for (int a0 = 0; a0 < q; a0++)
+            {
+                int n = Convert.ToInt32(Console.ReadLine());
+                string[] sizes_temp = Console.ReadLine().Split(' ');
+                int[] sizes = Array.ConvertAll(sizes_temp, e => int.Parse(e));
+                int v = Convert.ToInt32(Console.ReadLine());
+
+                int[][] vendors = new int[v][];
+
+
+                for (int a1 = 0; a1 < v; a1++)
+                {
+                    string[] tokens_smallest = Console.ReadLine().Split(' ');
+                    int smallest = Convert.ToInt32(tokens_smallest[0]);
+                    int largest = Convert.ToInt32(tokens_smallest[1]);
+                    // your code goes here
+
+                    vendors[a1] = new int[2];
+                    vendors[a1][0] = smallest;
+                    vendors[a1][1] = largest;
+                   
+                }
+
+                HashSet<int> hs = new HashSet<int>();
+                for (int i = 0; i < sizes.Length; i++)
+                {
+                    for (int j = 0; j < vendors.Length; j++)
+                    {
+                        if (sizes[i] >= vendors[j][0] && sizes[i] <= vendors[j][1])
+                        {
+                            hs.Add(sizes[i]);
+                            break;
+                        }
+                    }
+                }
+
+                Console.WriteLine(hs.Count);
+            }
+
+            Console.ReadLine();
+
+        }
+
+
+
+    }
+}
+
+
+
+

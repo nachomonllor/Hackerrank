@@ -1,0 +1,68 @@
+﻿https://www.hackerrank.com/challenges/cipher
+
+//----------proceso inverso-----------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            //string[] input = Console.ReadLine().Split(' ');
+            //string n = input[0];
+            //int k = int.Parse(input[1]);
+            //string b = Console.ReadLine();
+
+            string b = "1001010";
+            int k = 4;
+
+            char[,] matriz = new char[k, b.Length + k - 1];
+
+            for (int i = 0; i < matriz.GetLength(0); i++)
+            {
+                for (int j = 0; j < matriz.GetLength(1); j++)
+                {
+                    matriz[i, j] = '0';
+                }
+            }
+
+            int ini = 0;
+            for (int i = 0; i < k; i++)
+            {
+                for (int j = 0; j < b.Length; j++)
+                {
+                    matriz[i, j + ini] = b[j];
+                }
+                ini++;
+            }
+
+            //for (int i = 0; i < matriz.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < matriz.GetLength(1); j++)
+            //    {
+            //        Console.Write(matriz[i, j] + "");
+            //    }
+            //    Console.WriteLine();
+            //}
+
+            string ans = "";
+            for (int j = 0; j < matriz.GetLength(1); j++)
+            {
+                int xor_col = 0;
+                for (int i = 0; i < matriz.GetLength(0); i++)
+                {
+                    xor_col ^= int.Parse(matriz[i, j].ToString()) ;
+                }
+                ans += xor_col.ToString();
+            }
+            Console.WriteLine(ans);
+
+            Console.ReadLine();
+        }
+    }
+}

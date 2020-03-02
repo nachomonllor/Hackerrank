@@ -1,0 +1,557 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+
+
+            //Queue<int> q = new Queue<int>();
+
+
+            //string[] s = { 
+            //"store email1 1",
+            //"store email2 10",
+            //"get_next_email"};
+
+
+            string[] s = { 
+            "store segundo 2",
+            "store primero1 1",
+            "store primero2 1",
+            "store primero3 1",
+            "store primero4 1",
+            "store tercero 45",
+            "get_next_email",
+            "get_next_email",
+            "get_next_email" , 
+            "get_next_email" ,
+            "get_next_email" ,
+            "get_next_email" ,
+            "get_next_email" ,
+             "get_next_email"       };
+
+
+            List<int> ids = new List<int>();
+            List<string> emails = new List<string>();
+
+            bool estaOrdenado = false;
+
+            int indicePila = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                string[] partes = s[i].Split(' ');
+                if (partes.Length == 3 && partes[0] == "store")
+                {
+                    emails.Add(partes[1]);
+                    ids.Add(int.Parse(partes[2]));
+                    indicePila++;
+                    estaOrdenado = false;
+                }
+                else if (s[i] == "get_next_email")
+                {
+                    //quicksort(emails, ids, 0, ids.Count - 1);
+
+                    int[] a_id = ids.ToArray();
+                    string[] a_email = emails.ToArray();
+
+                    if (!estaOrdenado)
+                    {
+                        Array.Sort(a_id, a_email);
+                    }
+                    estaOrdenado = true;
+
+                    ids = a_id.ToList();
+                    emails = a_email.ToList();
+
+                    if (indicePila > 0)
+                    {
+                        Console.WriteLine(emails[indicePila - 1]);
+                        ids.RemoveAt(indicePila - 1);
+                        emails.RemoveAt(indicePila - 1);
+                        indicePila--;
+                    }
+                    else
+                    {
+                        Console.WriteLine(-1);
+                    }
+                }
+
+            }
+
+         
+
+
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+
+
+            //Queue<int> q = new Queue<int>();
+
+
+            //string[] s = { 
+            //"store email1 1",
+            //"store email2 10",
+            //"get_next_email"};
+
+
+            string[] s = { 
+            "store segundo 2",
+            "store primero1 1",
+            "store primero2 1",
+            "store primero3 1",
+            "store primero4 1",
+            "store tercero 45",
+            "get_next_email",
+            "get_next_email",
+            "get_next_email" , 
+            "get_next_email" ,
+            "get_next_email" ,
+            "get_next_email"       };
+
+
+            List<int> ids = new List<int>();
+            List<string> emails = new List<string>();
+
+            bool estaOrdenado = false;
+
+            int indicePila = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                string[] partes = s[i].Split(' ');
+                if (partes.Length == 3 && partes[0] == "store")
+                {
+                    emails.Add(partes[1]);
+                    ids.Add(int.Parse(partes[2]));
+                    indicePila++;
+                    estaOrdenado = false;
+                }
+                else if (s[i] == "get_next_email")
+                {
+                    //quicksort(emails, ids, 0, ids.Count - 1);
+
+                    int[] a_id = ids.ToArray();
+                    string[] a_email = emails.ToArray();
+
+                    if (!estaOrdenado)
+                    {
+                        Array.Sort(a_id, a_email);
+                    }
+                    estaOrdenado = true;
+
+                    ids = a_id.ToList();
+                    emails = a_email.ToList();
+
+                    Console.WriteLine(emails[indicePila-1]);
+                    ids.RemoveAt(indicePila-1);
+                    emails.RemoveAt(indicePila-1);
+                    indicePila--;
+                }
+
+            }
+
+         
+
+
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+
+
+
+
+------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+
+
+            //Queue<int> q = new Queue<int>();
+
+
+            //string[] s = { 
+            //"store email1 1",
+            //"store email2 10",
+            //"get_next_email"};
+
+
+            string[] s = { 
+            "store segundo 2",
+            "store primero1 1",
+            "store primero2 1",
+            "store primero3 1",
+            "store primero4 1",
+            "store tercero 45",
+            "get_next_email"};
+
+
+            List<int> ids = new List<int>();
+            List<string> emails = new List<string>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                string[] partes = s[i].Split(' ');
+                if (partes.Length == 3 && partes[0] == "store")
+                {
+                    emails.Add(partes[1]);
+                    ids.Add(int.Parse(partes[2]));
+                }
+                else if (s[i] == "get_next_email")
+                {
+                    //quicksort(emails, ids, 0, ids.Count - 1);
+
+                    int[] a_id = ids.ToArray();
+                    string[] a_email = emails.ToArray();
+
+                    Array.Sort(a_id, a_email);
+
+                    Console.WriteLine(a_email[a_email.Length-1]);
+                    ids.RemoveAt(i - 1);
+                    emails.RemoveAt(i - 1);
+                }
+
+            }
+
+         
+
+
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+
+
+
+
+------------------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+
+        static  void quicksort(List<string> email, List<int> id, int primero, int ultimo)
+        {
+            int i, j, central;
+            int pivote;
+            central = (primero + ultimo) / 2;
+            pivote = id[central];
+            i = primero;
+            j = ultimo;
+            do
+            {
+                while (id[i] < pivote) i++;
+                while (id[j] > pivote) j--;
+                if (i <= j)
+                {
+                    int temp;
+                    temp = id[i];
+                    id[i] = id[j];
+                    id[j] = temp;
+
+                    string tempEmail = email[i];
+                    email[i] = email[j];
+                    email[j] = tempEmail;
+
+                    i++;
+                    j--;
+                }
+            } while (i <= j);
+
+            if (primero < j)
+            {
+                quicksort(email, id, primero, j);
+            }
+            if (i < ultimo)
+            {
+                quicksort(email, id, i, ultimo);
+            }
+        }
+
+        static void Main(string[] args)
+        {
+
+
+            //Queue<int> q = new Queue<int>();
+
+
+            string[] s = { 
+            "store email1 1",
+            "store email2 10",
+            "get_next_email"};
+
+            List<int> ids = new List<int>();
+            List<string> emails = new List<string>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                string[] partes = s[i].Split(' ');
+                if (partes[0] == "store")
+                {
+                    emails.Add(partes[1]);
+                    ids.Add(int.Parse( partes[2]));
+                }
+                else if (s[i] == "get_next_email")
+                {
+                    quicksort(emails, ids, 0, ids.Count - 1);
+                }
+
+            }
+
+            for (int i = 0; i < ids.Count; i++)
+            {
+
+                Console.WriteLine(ids[i] + " " + emails[i]);
+
+            }
+
+           
+
+            Console.ReadLine();
+        }
+    }
+}
+
+
+-------------------------------------------------------------------------------
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+
+        //static  void quicksort(List<string> email, List<int> id, int primero, int ultimo)
+        //{
+        //    int i, j, central;
+        //    int pivote;
+        //    central = (primero + ultimo) / 2;
+        //    pivote = id[central];
+        //    i = primero;
+        //    j = ultimo;
+        //    do
+        //    {
+        //        while (id[i] < pivote) i++;
+        //        while ( id[j] > pivote) j--;
+        //        if (i <= j)
+        //        {
+        //            int temp;
+        //            temp = id[i];
+        //            id[i] = id[j];
+        //            id[j] = temp;
+
+        //            string tempEmail = email[i];
+        //            email[i] = email[j];
+        //            email[j] = tempEmail;
+
+        //            i++;
+        //            j--;
+        //        }
+        //    } while (i <= j);
+
+        //    if (primero < j)
+        //    {
+        //        quicksort(email, id, primero, j);
+        //    }
+        //    if (i < ultimo)
+        //    {
+        //        quicksort(email, id, i, ultimo);
+        //    }
+        //}
+
+
+        //static int partition(List<string> emails, List<int> ids, int low, int high)
+        //{
+        //    int temp;
+        //    string tempEmail;
+        //    int pivot = ids[high];
+        //    int i = (low - 1); // index of smaller element
+        //    for (int j = low; j <= high - 1; j++)
+        //    {
+        //        // If current element is smaller than or
+        //        // equal to pivot
+        //        if (ids[j] >= pivot)
+        //        {
+        //            i++;
+
+        //            // swap arr[i] and arr[j]
+        //            temp = ids[i];
+        //            ids[i] = ids[j];
+        //            ids[j] = temp;
+
+        //            tempEmail = emails[i];
+        //            emails[i] = emails[j];
+        //            emails[j] = tempEmail;
+        //        }
+        //    }
+
+        //    // swap arr[i+1] and arr[high] (or pivot)
+        //    temp = ids[i + 1];
+        //    ids[i + 1] = ids[high];
+        //    ids[high] = temp;
+
+        //    tempEmail = emails[i + 1];
+        //    emails[i + 1] = emails[high];
+        //    emails[high] = tempEmail;
+
+
+        //    return i + 1;
+        //}
+
+        ///* The main function that implements QuickSort()
+        //  arr[] --> Array to be sorted,
+        //  low  --> Starting index,
+        //  high  --> Ending index */
+        //static void qSort(List<string> emails, List<int> ids, int low, int high)
+        //{
+        //    if (low < high)
+        //    {
+        //        /* pi is partitioning index, arr[pi] is
+        //          now at right place */
+        //        int pi = partition(emails, ids, low, high);
+
+        //        // Recursively sort elements before
+        //        // partition and after partition
+        //        qSort(emails, ids, low, pi - 1);
+        //        qSort(emails, ids, pi + 1, high);
+        //    }
+        //}
+
+
+
+        static void Main(string[] args)
+        {
+
+
+            //Queue<int> q = new Queue<int>();
+
+
+            //string[] s = { 
+            //"store email1 1",
+            //"store email2 10",
+            //"get_next_email"};
+
+
+            string[] s = { 
+            "store segundo 2",
+            "store primero1 1",
+            "store primero2 1",
+            "store primero3 1",
+            "store primero4 1",
+            "store tercero 45",
+            "get_next_email"};
+
+
+            List<int> ids = new List<int>();
+            List<string> emails = new List<string>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                string[] partes = s[i].Split(' ');
+                if (partes.Length == 3 && partes[0] == "store")
+                {
+                    emails.Add(partes[1]);
+                    ids.Add(int.Parse(partes[2]));
+                }
+                //else if (s[i] == "get_next_email")
+                //{
+                //    quicksort(emails, ids, 0, ids.Count - 1);
+                //    Console.WriteLine(emails[emails.Count - 1]);
+                //    ids.RemoveAt(i-1);
+                //    emails.RemoveAt(i-1);
+                //}
+
+            }
+
+            //qSort(emails, ids, 0, ids.Count - 1);
+
+            int[] aid = ids.ToArray();
+            string[] aemail = emails.ToArray();
+
+            Array.Sort(aid, aemail);
+
+            for (int i = 0; i < ids.Count; i++)
+            {
+
+                //Console.WriteLine(ids[i] + " " + emails[i]);
+                Console.WriteLine(aid[i] + " " + aemail[i]);
+
+            }
+
+
+
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+

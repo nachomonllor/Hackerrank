@@ -1,0 +1,61 @@
+﻿https://www.hackerrank.com/contests/booking-womenintech/challenges/emails-emails-everywhere
+
+
+from Queue import PriorityQueue
+
+class MyPriorityQueue(PriorityQueue):
+    def __init__(self):
+        PriorityQueue.__init__(self)
+        self.counter = 0
+
+    def put(self, item, priority):
+        PriorityQueue.put(self, (priority, self.counter, item))
+        self.counter += 1
+
+    def get(self, *args, **kwargs):
+        _, _, item = PriorityQueue.get(self, *args, **kwargs)
+        return item
+    
+    
+
+
+queue = MyPriorityQueue()
+
+'''
+s = [
+            "store segundo 2",
+            "store primero1 1",
+            "store primero2 1",
+            "store primero3 1",
+            "store primero4 1",
+            "store tercero 45",
+            "get_next_email",
+            "get_next_email",
+            "get_next_email" , 
+            "get_next_email" ,
+            "get_next_email" ,
+            "get_next_email" ,
+            "get_next_email" ,
+             "get_next_email" ,
+             "store cuarto 4",
+             "get_next_email",
+             "store cinco 5",
+             "get_next_email"]
+'''
+
+n = int(raw_input())
+
+for i in range(n):
+    #print e
+    elem = raw_input()
+    partes = elem.split(' ')
+    if partes[0] == "store":
+        key = int(partes[2])* (-1)
+        email = partes[1]
+        queue.put(email , key)
+    elif elem == "get_next_email":
+        if not queue.empty():
+            em = queue.get()
+            print em
+        else:
+            print "-1"

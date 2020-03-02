@@ -1,0 +1,108 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+
+            string[] s = { 
+            "store segundo 2",
+            "store primero1 1",
+            "store primero2 1",
+            "store primero3 1",
+            "store primero4 1",
+            "store tercero 45",
+            "get_next_email",
+            "get_next_email",
+            "get_next_email" , 
+            "get_next_email" ,
+            "get_next_email" ,
+            "get_next_email" ,
+            "get_next_email" ,
+             "get_next_email" ,
+             "store cuarto 4",
+             "get_next_email",
+             "store cinco 5",
+             "get_next_email"};
+
+
+            int n = int.Parse(Console.ReadLine());
+
+            SortedDictionary<int, List<string>> sortedDic = new SortedDictionary<int,List<string>>();
+            
+
+            // bool estaOrdenado = false;
+            int key = 0;
+            int indiceKeys = 0;
+            for (int i = 0; i < n; i++)
+            {
+                string input =  Console.ReadLine();
+                string[] partes = input.Split(' ');
+
+
+                if (partes[0] == "store")
+                {
+                    key = int.Parse(partes[2]);
+                    //emails.Add(partes[1]);
+                    //ids.Add(int.Parse(partes[2]));
+                    indiceKeys++;
+
+                    if (sortedDic.ContainsKey(key))
+                    {
+                        sortedDic[key].Add(partes[1]);
+                    }
+                    else
+                    {
+                        sortedDic[key] = new List<string>();
+                        sortedDic[key].Add(partes[1]);
+                    }
+                }
+                else if (input == "get_next_email")
+                {
+
+                    if (sortedDic.Count > 0)
+                    {
+                       
+                        if (sortedDic[key].Count > 0)
+                        {
+                            Console.WriteLine(sortedDic[key][0]);
+                            sortedDic[key].RemoveAt(0);
+                        }
+                        if (sortedDic[key].Count == 0)
+                        {
+                            sortedDic.Remove(key);
+
+                            int [] arrKeys =  sortedDic.Keys.ToArray();
+                            if (arrKeys.Length > 0)
+                            {
+                                key = arrKeys[arrKeys.Length - 1];
+                            }
+                            //else
+                            //{
+                            //    Console.WriteLine(-1);
+                            //}
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine(-1);
+                    }
+                  
+                }
+
+            }
+
+
+
+            Console.ReadLine();
+
+
+        }
+    }
+}

@@ -1,0 +1,115 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+
+
+            //Queue<int> q = new Queue<int>();
+
+
+            //string[] s = { 
+            //"store email1 1",
+            //"store email2 10",
+            //"get_next_email"};
+
+
+            //string[] s = { 
+            //"store segundo 2",
+            //"store primero1 1",
+            //"store primero2 1",
+            //"store primero3 1",
+            //"store primero4 1",
+            //"store tercero 45",
+            //"get_next_email",
+            //"get_next_email",
+            //"get_next_email" , 
+            //"get_next_email" ,
+            //"get_next_email" ,
+            //"get_next_email" ,
+            //"get_next_email" ,
+            // "get_next_email"       };
+
+
+            //string[] s = { 
+            //"store segundo 2",
+            //"store primero1 1",
+            //"store primero2 1",
+            //"store primero3 1",
+            //"store primero4 1",
+            //"store tercero 45",
+            //"get_next_email",
+            //"get_next_email",
+            //"get_next_email" , 
+            //"get_next_email" ,
+            //"get_next_email" ,
+            //"get_next_email" ,
+            //"get_next_email" ,
+            // "get_next_email" ,
+            // "store cuarto 4",
+            // "get_next_email",
+            // "store cinco 5",
+            // "get_next_email"};
+
+
+            int n = int.Parse(Console.ReadLine());
+
+
+            List<int> ids = new List<int>();
+            List<string> emails = new List<string>();
+
+           // bool estaOrdenado = false;
+            string input = "";
+            int indicePila = 0;
+            for (int i = 0; i < n; i++)
+            {
+                input = Console.ReadLine();
+                string[] partes = input.Split(' ');
+                if ( partes[0] == "store")
+                {
+                    emails.Add(partes[1]);
+                    ids.Add(int.Parse(partes[2]));
+                    indicePila++;
+                  
+                }
+                else if (input == "get_next_email")
+                {
+                    //quicksort(emails, ids, 0, ids.Count - 1);
+
+                    int[] a_id = ids.ToArray();
+                    string[] a_email = emails.ToArray();
+
+                    ids = a_id.ToList();
+                    emails = a_email.ToList();
+
+                    if (indicePila > 0)
+                    {
+                        int indiceMaxID = ids.IndexOf(ids.Max());
+                        Console.WriteLine(emails[indiceMaxID]);
+                        ids.RemoveAt(indiceMaxID);
+                        emails.RemoveAt(indiceMaxID);
+                        indicePila--;
+                    }
+                    else
+                    {
+                        Console.WriteLine(-1);
+                    }
+                }
+
+            }
+
+
+
+
+            Console.ReadLine();
+        }
+    }
+}

@@ -1,0 +1,177 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static int[] convertirPosicion(int r, int c, int n)
+        {
+            int fila = 0;
+            int col = 0;
+
+
+
+            return new int[] { n-r, c-1 };
+        }
+
+
+        static void Main(string[] args)
+        {
+            //int[] res = convertirPosicion(8, 8);
+            //Console.WriteLine(res[0] + ", " + res[1]);
+
+            
+
+            string[] tokens_n = Console.ReadLine().Split(' ');
+            int n = Convert.ToInt32(tokens_n[0]);
+            int k = Convert.ToInt32(tokens_n[1]);
+            string[] tokens_rQueen = Console.ReadLine().Split(' ');
+            int rQueen = Convert.ToInt32(tokens_rQueen[0]);
+            int cQueen = Convert.ToInt32(tokens_rQueen[1]);
+
+            int[,] tablero = new int[n,n];
+
+            int[] posDama = convertirPosicion(rQueen, cQueen,n);
+            tablero[posDama[0], posDama[1]] = 1;
+
+            for (int a0 = 0; a0 < k; a0++)
+            {
+                string[] tokens_rObstacle = Console.ReadLine().Split(' ');
+                int rObstacle = Convert.ToInt32(tokens_rObstacle[0]);
+                int cObstacle = Convert.ToInt32(tokens_rObstacle[1]);
+                // your code goes here
+
+                int[] obstaculo = convertirPosicion(rObstacle, cObstacle,n);
+                tablero[obstaculo[0], obstaculo[1]] = 2;
+            }
+
+            //for (int i = 0; i < n; i++)
+            //{
+            //    for (int j = 0; j < n; j++)
+            //    {
+            //        Console.Write(tablero[i, j] + " ");
+            //    }
+            //    Console.WriteLine();
+            //}
+
+            int ans = 0;
+
+            int [] pos = convertirPosicion(rQueen,cQueen,n);
+            int filaDama = pos[0];
+            int colDama = pos[1];
+
+
+            int fila = filaDama;
+            int col = colDama;
+
+            for (  fila = filaDama+1 ; fila < n; fila++) //derecho
+            {
+                if (tablero[fila, colDama] != 0)
+                {
+                    break;
+                }
+                ans++;
+                
+            }
+            for (  fila = filaDama-1 ; fila >= 0; fila--)
+            {
+                if (tablero[fila, colDama] != 0)
+                {
+                    break;
+                }
+                ans++;
+               
+            }
+
+            for (  col = colDama +1; col < n; col++)
+            {
+                if (tablero[filaDama, col] != 0)
+                {
+                    break;
+                }
+                ans++;
+            }
+
+            for (  col = colDama -1; col >= 0; col-- )
+            {
+                if (tablero[filaDama, col] != 0)
+                {
+                    break;
+                }
+                ans++;
+            }
+
+             fila = filaDama-1;
+             col = colDama+1;
+
+            while (fila >= 0 && col < n) //ne
+            {
+                if (tablero[fila, col] != 0)
+                {
+                    break;
+                }
+                ans++;
+                fila--;
+                col++;
+            }
+
+            fila = filaDama +1;
+            col = colDama + 1;
+
+
+            while (fila < n && col < n)
+            {
+                if (tablero[fila, col] != 0)
+                {
+                    break;
+                }
+                ans++;
+                fila++;
+                col++;
+            }
+
+            fila = filaDama + 1;
+            col = colDama  -1;
+
+
+            while (fila < n && col >= 0)
+            {
+                if (tablero[fila, col] != 0)
+                {
+                    break;
+                }
+                ans++;
+                fila++;
+                col--;
+            }
+
+            fila = filaDama  -1;
+            col = colDama - 1;
+
+
+            while (fila >= 0 && col >= 0)
+            {
+                if (tablero[fila, col] != 0)
+                {
+                    break;
+                }
+                ans++;
+                fila--;
+                col--;
+            }
+
+
+
+            Console.WriteLine(ans);
+
+
+            Console.ReadLine();
+        }
+
+
+
+    }
+}

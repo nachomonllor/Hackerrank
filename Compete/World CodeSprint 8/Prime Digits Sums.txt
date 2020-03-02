@@ -1,0 +1,258 @@
+﻿https://www.hackerrank.com/contests/world-codesprint-8/challenges/prime-digit-sums
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Numerics;
+
+namespace ConsoleApplication2
+{
+     class Program
+    {
+        
+        static BigInteger Sqrt( BigInteger n)
+        {
+            if (n == 0) return 0;
+            if (n > 0)
+            {
+                int bitLength = Convert.ToInt32(Math.Ceiling(BigInteger.Log(n, 2)));
+                BigInteger root = BigInteger.One << (bitLength / 2);
+
+                while (!isSqrt(n, root))
+                {
+                    root += n / root;
+                    root /= 2;
+                }
+
+                return root;
+            }
+
+            throw new ArithmeticException("NaN");
+        }
+        static Boolean isSqrt(BigInteger n, BigInteger root)
+        {
+            BigInteger lowerBound = root * root;
+            BigInteger upperBound = (root + 1) * (root + 1);
+
+            return (n >= lowerBound && n < upperBound);
+        }
+
+        static bool esPrimo(BigInteger n)
+        {
+            if (n < 2) return false;
+            if (n == 2) return true;
+            if (n % 2 == 0) return false;
+
+            //int sqr = (int)Math.Sqrt(n);
+            BigInteger sqr = Sqrt(n);
+
+            for (BigInteger i = 3; i <= sqr; i += 2)
+            {
+                if (n % i == 0) return false;
+            }
+            return true;
+        }
+
+
+
+        //static bool VerificarConsecutivos(string n)
+        //{
+        //    int s1 = n.Substring(0, 3).Sum( e => e-'0');
+            
+
+        //    for (int i = 0; i < n.Length - 2; i++)
+        //    {
+        //        //Console.WriteLine(n.Substring(i, 3));
+        //        //s1 = n.Substring(i, 3).Sum(e => e - '0');
+               
+        //        if (!esPrimo(s1))
+        //        {
+        //            return false;
+        //        }
+        //        s1 -= int.Parse( n[i].ToString());
+        //        s1 += int.Parse(n[i + 3].ToString());
+        //    }
+        //    int s2 = 0;
+        //    for (int i = 0; i < n.Length - 3; i++)
+        //    {
+        //        // Console.WriteLine(n.Substring(i, 4));
+        //        s2 = n.Substring(i, 4).Sum(e => e - '0');
+        //        if (!esPrimo(s2))
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    int s3 = 0;
+        //    for (int i = 0; i < n.Length - 4; i++)
+        //    {
+        //        s3 = n.Substring(i, 5).Sum(e => e - '0');
+        //        if (!esPrimo(s3))
+        //        {
+        //            return false;
+        //        }
+        //    }
+
+
+        //    return true;
+        //}
+
+        static bool VerificarConsecutivos(string n)
+        {
+            int s1 = n.Substring(0, 3).Sum(e => e - '0');
+            for (int i = 0; i < n.Length - 2; i++)
+            {
+                //Console.WriteLine(n.Substring(i, 3));
+                //s1 = n.Substring(i, 3).Sum(e => e - '0');
+                //Console.WriteLine(s1);
+                if (!esPrimo(s1))
+                {
+                    return false;
+                }
+                if (i < n.Length - 3)
+                {
+                    s1 -= int.Parse(n[i].ToString());
+                    s1 += int.Parse(n[i + 3].ToString());
+                }
+            }
+
+            int s2 = n.Substring(0, 4).Sum(e => e - '0');
+            for (int i = 0; i < n.Length - 3; i++)
+            {
+                // Console.WriteLine(n.Substring(i, 4));
+                //s2 = n.Substring(i, 4).Sum(e => e - '0');
+                if (!esPrimo(s2))
+                {
+                    return false;
+                }
+                if (i < n.Length - 4)
+                {
+                    s2 -= int.Parse(n[i].ToString());
+                    s2 += int.Parse(n[i + 4].ToString());
+                }
+
+            }
+            int s3 = n.Substring(0, 5).Sum(e => e - '0');
+            for (int i = 0; i < n.Length - 4; i++)
+            {
+                //s3 = n.Substring(i, 5).Sum(e => e - '0');
+                if (!esPrimo(s3))
+                {
+                    return false;
+                }
+                if (i < n.Length - 5)
+                {
+                    s3 -= int.Parse(n[i].ToString());
+                    s3 += int.Parse(n[i + 5].ToString());
+                }
+            }
+
+
+            return true;
+        }
+
+
+        static void Main(string[] args)
+        {
+            // int n=6;
+
+
+            int q = Convert.ToInt32(Console.ReadLine());
+            for (int a0 = 0; a0 < q; a0++)
+            {
+                int n = Convert.ToInt32(Console.ReadLine());
+                // your code goes here
+
+                string inicio = "1";
+                inicio += new string('0', n - 1);
+                //Console.WriteLine(inicio);
+
+                string fin = new string('9', n);
+
+                int ans = 0;
+
+                for (BigInteger i = BigInteger.Parse( inicio); i <= BigInteger.Parse( fin); i++)
+                {
+                    if (VerificarConsecutivos(i.ToString()))
+                    {
+                        ans++;
+                    }
+                }
+                Console.WriteLine(ans);
+            }
+        }
+
+
+    }
+}
+
+
+
+
+
+---------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static bool esPrimo(int n)
+        {
+            if (n < 2) return false;
+            if (n == 2) return true;
+            if (n % 2 == 0) return false;
+
+            int sqr = (int)Math.Sqrt(n);
+
+            for (int i = 3; i <= sqr; i += 2)
+            {
+                if (n % i == 0) return false;
+            }
+            return true;
+        }
+
+        static bool VerificarConsecutivos(string n)
+        {
+            int s1 = 0;
+            for (int i = 0; i < n.Length - 2; i++)
+            {
+                //Console.WriteLine(n.Substring(i, 3));
+                s1 = n.Substring(i, 3).Sum(e => e - '0');
+                if (!esPrimo(s1))
+                {
+                    return false;
+                }
+            }
+            int s2 = 0;
+            for (int i = 0; i < n.Length - 3; i++)
+            {
+                s2 = n.Substring(i, 4).Sum(e => e - '0');
+                if (!esPrimo(s2))
+                {
+                    return false;
+                }
+            }
+
+
+            return true;
+        }
+
+
+        static void Main(string[] args)
+        {
+
+            //VerificarConsecutivos("123456");
+
+            Console.ReadLine();
+
+        }
+    }
+}

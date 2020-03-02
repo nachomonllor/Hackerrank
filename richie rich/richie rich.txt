@@ -1,0 +1,18 @@
+﻿https://www.hackerrank.com/challenges/richie-rich/problem
+
+.fijarse cuantos digitos hay que cambiar para hacer un palindromo
+.si esa cant c > k (ambos perfmitidos) se retorna "-1"
+sino:
+	.espejar todos los necesarios como para hacer un palindromo dejando siempre el mayor, 	usando un contador para ver cuantos cambios fueron necesarios.
+	.marcar todos los indices donde hice cambios para ver luego cuando rellene con 9.'s.
+	. si sobran los permitidos (k), empezar a espejar con 9's desde el extremo izquierdo y 	derecho siempre que al menos 1 de los dos no sea 9. indices: 0 con len - 1, 1 con len - 2
+	2 con len - 3... si n es impar n/2-1 con n/2+1, sino n/2 con n/2+1
+		fijandose siempre si ese indice ya esta usado, en caso de haberlo usado 				aumentarle 1 al contador de permitidos
+
+
+--------------------------------------------------------
+
+
+
+
+
