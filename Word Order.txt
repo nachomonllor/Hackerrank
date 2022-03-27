@@ -1,0 +1,26 @@
+
+
+https://www.hackerrank.com/challenges/word-order/problem
+
+n = int(input().strip())
+dic = {}
+arr = []
+
+for i in range(0, n):
+    w = input().strip()
+    if w in dic:
+        dic[w] += 1
+    else:
+        dic[w] = 1
+    arr.append(w)
+    
+
+s = ""
+hash = set()
+for item in arr:
+    if not item in hash:
+        s += str(dic[item]) + " "
+    hash.add(item)
+
+print(len(hash))
+print(s)
