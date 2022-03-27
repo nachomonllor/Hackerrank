@@ -1,0 +1,30 @@
+https://leetcode.com/problems/find-first-palindromic-string-in-the-array/submissions/
+
+
+    public static string FirstPalindrome(string[] words)
+        {
+
+            foreach (string item in words)
+            {
+                string s = item;
+                int i = 0, j = s.Length - 1;
+                bool esPalin = true;
+                while (i < j)
+                {
+                    if (s[i] != s[j])
+                    {
+                        esPalin = false;
+                        break;
+                    }
+                    i++;
+                    j--;
+                }
+                if (esPalin)
+                {
+                    return item;
+                }
+            }
+
+            return "";
+
+        }
