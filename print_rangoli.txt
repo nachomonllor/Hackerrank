@@ -1,0 +1,163 @@
+
+https://www.hackerrank.com/challenges/alphabet-rangoli/problem?isFullScreen=true
+
+
+
+def obtener_fila_letras(size, t):
+    letras = []
+    letra = ord('a') + (size - 1)
+
+    for i in range(t):
+        letras.append(chr(letra))
+        letra -= 1
+    rev = list(reversed(letras))
+    rev.pop(0)
+
+    izq = '-'.join(letras)
+    der = '-'.join(rev)
+
+    return '-'.join([izq, der])
+
+
+def obtener_fila_lineas(size):
+    s = ""
+    for i in range(size - 1):
+        s += "--"
+    return s
+
+def print_rangoli(size):
+    ancho = size
+    anchoLetras = 1
+
+    concat = ""
+
+    for i in range(size):
+        filaLineas = obtener_fila_lineas(ancho)
+        filaLetras = obtener_fila_letras(size, anchoLetras).strip('-')
+        fila = filaLineas + filaLetras + filaLineas
+        #print(fila)
+        concat += fila +"\n"
+        ancho-=1
+        anchoLetras+=1
+
+
+    ancho = 2
+    anchoLetras = size - 1
+
+    for i in range(size - 1):
+        filaLineas = obtener_fila_lineas(ancho)
+        filaLetras = obtener_fila_letras(size, anchoLetras).strip('-')
+        fila = filaLineas + filaLetras + filaLineas
+        #print(fila)
+        concat += fila +"\n"
+        ancho += 1
+        anchoLetras -=1
+    
+    return concat
+
+ 
+print(print_rangoli(15))
+
+
+
+
+
+
+
+
+
+
+
+------------------- C# --------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp315
+{
+    class Program
+    {
+
+        static string ObtenerFilaLetras(int size, int t)
+        {
+            List<char> letras = new List<char>();
+            char letra = (char)('a' + (size - 1));
+
+            for (int i = 0; i < t; i++)
+            {
+                letras.Add(letra);
+                letra--;
+            }
+            List<char> rev = letras.ToList();
+            rev.Reverse();
+            rev.RemoveAt(0);
+
+            string izq = string.Join("-", letras.ToArray()).ToString();
+            string der = string.Join("-", rev.ToArray()).ToString();
+
+            return string.Join("-", new string[] { izq, der });
+        }
+
+        static string ObtenerFilaLineas(int size)
+        {
+            string s = "";
+            for (int i = 0; i < size - 1; i++)
+            {
+                s += "--";
+            }
+            return s;
+        }
+
+        static void print_rangoli(int size)
+        {
+
+            int ancho = size;
+            int anchoLetras = 1;
+
+            for (int i = 0; i < size; i++)
+            {
+                string filaLineas = ObtenerFilaLineas(ancho);
+                string filaLetras = ObtenerFilaLetras(size, anchoLetras).Trim('-');
+                string fila = filaLineas + filaLetras + filaLineas;
+                Console.WriteLine(fila);
+
+                ancho--;
+                anchoLetras++;
+
+            }
+
+            ancho = 2;
+            anchoLetras = size - 1;
+
+            for (int i = 0; i < size - 1; i++)
+            {
+                string filaLineas = ObtenerFilaLineas(ancho);
+                string filaLetras = ObtenerFilaLetras(size, anchoLetras).Trim('-');
+                string fila = filaLineas + filaLetras + filaLineas;
+                Console.WriteLine(fila);
+
+                ancho++;
+                anchoLetras--;
+            }
+
+        }
+
+
+
+        static void Main(string[] args)
+        {
+
+            //print_rangoli(5);
+
+            //Console.WriteLine(ObtenerFilaLetras(5, 3));
+
+            print_rangoli(8);
+
+
+            Console.ReadLine();
+
+        }
+    }
+}
