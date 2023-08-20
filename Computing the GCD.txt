@@ -1,0 +1,42 @@
+https://www.hackerrank.com/challenges/functional-programming-warmups-in-recursion---gcd/problem
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    static int Euclidean(int x, int y)
+    {
+        int dividendo = Math.max(x, y);
+        int divisor = Math.min(x, y);
+        int cociente = (int)(dividendo / divisor);
+        int resto = dividendo  - (divisor * cociente);
+
+        int candidato = resto;
+        while (resto != 0)
+        {
+            dividendo = divisor;
+            divisor = resto;
+            candidato = resto;  
+            cociente = (int)(dividendo / divisor);
+            resto = dividendo  - (divisor * cociente);
+    
+            if(resto == 0)
+            {
+                break;
+            }
+        }
+        return candidato;
+    }
+    
+    public static void main(String[] args) {
+        
+        Scanner sc= new Scanner(System.in);    //System.in is a standard input stream  
+        int a= sc.nextInt();   
+        int b= sc.nextInt();  
+                
+         System.out.println(Euclidean(a, b)); 
+        
+        
+    }
+} 
